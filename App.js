@@ -16,7 +16,6 @@ export default function App() {
 
   const [message, setMessageInInput] = useState()
   const [listOfMessages, setListOfMessages] = useState([])
-  //var listOfMessages = ['`Hello my name is Anibot']
 
   const handleSendMessage = () => {
     Keyboard.dismiss()
@@ -37,12 +36,12 @@ export default function App() {
                   headers: {
                       Accept: 'application/json',
                       'Content-Type': 'application/json',
-                      'Authorization': `Bearer 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`,
+                      'Authorization': `Bearer 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`,
                   },
                   body: JSON.stringify({
                       "prompt": message,
                       "temperature": 0.7,
-                      "max_tokens": 20,
+                      "max_tokens": 40,
                       "top_p": 0.6,
                       "frequency_penalty": 1,
                       "presence_penalty": 1,
@@ -64,7 +63,7 @@ export default function App() {
   return (
 
     <SafeAreaView style = {styles.container}>
-      <View style = { styles.images_container }>
+      <View style = { styles.letters_container }>
         <Image style = { styles.letters } source = { require('./letters/a.png') }/>
         <Image style = { styles.letters } source = { require('./letters/n.png') }/>
         <Image style = { styles.letters } source = { require('./letters/i.png') }/>
@@ -77,7 +76,6 @@ export default function App() {
         <View>
           {
             listOfMessages.map((item, index) => {
-                //console.log(item)
                 if(item.charAt(0) == '`') {
                     return (
                         <TouchableOpacity key={index}>
@@ -95,7 +93,7 @@ export default function App() {
                     return (
                         <TouchableOpacity key = {index}>
                             <TextInput
-                                value = { item.replace(/(\r\n|\n|\r)/gm, "").trim() }
+                                value = { item.trim() }
                                 style = { styles.user_messages }
                                 editable = { false }
                                 multiline = { true }
